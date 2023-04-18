@@ -1,0 +1,32 @@
+//CODIGO FONTE TEMP_DHT11
+
+#define BLYNK_PRINT Serial // Comment this out to disable prints and save space
+#include <SPI.h>
+#include <ESP8266WiFi.h>
+#include <BlynkSimpleEsp8266.h>
+#include <SimpleTimer.h>
+#include <DHT.h>
+
+char auth[] = "bqurc8jdBtltO23Vvqgsn310DQivPYb9"; //TOKEN BLYNK
+
+// Sua Credencial de WiFi.
+// Set password to "" for open networks.
+char ssid[] = "NOME DA REDE";
+char pass[] = "SENHA REDE";
+
+#define DHTPIN 2 // Digital pin 4
+
+// Remova o comentário de qualquer tipo que você esteja usando!
+#define DHTTYPE DHT11 // DHT 11
+//#define DHTTYPE DHT22 // DHT 22, AM2302, AM2321
+//#define DHTTYPE DHT21 // DHT 21, AM2301
+
+DHT dht(DHTPIN, DHTTYPE);
+SimpleTimer timer;
+
+// Esta função envia o tempo de atividade do Arduino a cada segundo para Pino Virtual (5).
+// No aplicativo, a frequência de leitura do Widget deve ser definida como PUSH.
+// Você define com que frequência enviar dados ao Blynk App.
+void sendSensor()
+{
+float
