@@ -1,0 +1,29 @@
+MONITORAR_FLUXO_ACESSO_VIA_SMARTPHONE.
+
+#define BLYNK_PRINT Serial //Inclui e exclui as impressões seriais do código durante o tempo de compilação.
+#include <ESP8266WiFi.h>
+#include <BlynkSimpleEsp8266.h>
+BlynkTimer timer;
+
+//Obter Auth Token no Blynk App.
+char auth[] = "E3cr46mTfcHVGFq_EADcx0yJ0sH8HBFA";
+
+// Credenciais de WiFi.
+// Definir senha para "" para redes abertas.
+char ssid[] = "NOME DA REDE";
+char pass[] = "SENHA DA REDE";
+int flag=0;
+
+void notifyOnButtonPress()
+{
+int isButtonPressed = digitalRead(D1);
+if (isButtonPressed==1 && flag==0) {
+Serial.println("A PORTA DA SALA DAS CAMERAS FOI ABERTA");
+Blynk.notify("A PORTA DA SALA DAS CAMERAS FOI ABERTA");
+
+//Delay de 15 segundos a cada notificação.
+//Flag 0 Condição de parada quando estado do sensor for igual a 0.
+//Flag 1 Condição de parada quando estado do sensor for igual a 1.
+
+Blynk.notify("A PORTA DA SALA DAS CAMERAS FOI ABERTA") 
+Blynk.notify("A PORTA DA SALA DAS CAMERAS FOI FECHADA") 
