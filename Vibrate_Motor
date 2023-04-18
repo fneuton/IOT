@@ -1,0 +1,39 @@
+//SENSOR DE VIBRAÇÃO.
+#define BLYNK_PRINT Serial
+#include <ESP8266WiFi.h>
+#include <BlynkSimpleEsp8266.h>
+#include <SimpleTimer.h>
+
+// You should get Auth Token in the Blynk App.
+// Go to the Project Settings (nut icon).
+char auth[] = "hEX0LpG89LcGHqoDexeOwMf5r04w4f";
+
+char ssid[] = "NOME REDE";
+char pass[] = "SENHA RED";
+
+SimpleTimer timer;
+
+// sensors
+int vs = D0; // vibration sensor
+int sdata = 0; // sensor data will be stored in this variable.
+
+String vdata = "";
+
+// This function sends Arduino's up time every second to Virtual Pin (1).
+// In the app, Widget's reading frequency should be set to PUSH. This means
+// that you define how often to send data to Blynk App.
+void myTimerEvent()
+{
+// You can send any value at any time.
+// Please don't send more that 10 values per second.
+Blynk.virtualWrite(V1, millis() /1000);
+
+}
+
+void setup()
+{
+// GRAFICO MONITOR SERIAL
+Serial.begin(9600);
+pinMode(vs ,INPUT);
+Blynk.begin(auth, ssid, pass)
+}
